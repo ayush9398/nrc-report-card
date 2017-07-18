@@ -1,28 +1,7 @@
-<?php
 
-$data = get_csv_content('https://docs.google.com/spreadsheets/d/1GFG-phtItT3V3JGGqyZgpN6aViDkY-rg3HUTBeOjD3Q/pub?output=csv');
-
-	function get_csv_content($spreadsheet_url){
-		if(!ini_set('default_socket_timeout', 15)) 
-		echo "<!-- unable to change socket timeout -->";
-
-		if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
-			while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
-				$spreadsheet_data[] = $data;
-			}
-			fclose($handle);
-			return $spreadsheet_data;
-		}
-	}
-	
-	function validate_data($data){
-		return true;
-	}
-    
-?>
 	
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -30,6 +9,28 @@ $data = get_csv_content('https://docs.google.com/spreadsheets/d/1GFG-phtItT3V3JG
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
         <link href="css/style.css" rel="stylesheet" type="text/css" />
     </head>
+    <?php
+
+    $data = get_csv_content('https://docs.google.com/spreadsheets/d/1GFG-phtItT3V3JGGqyZgpN6aViDkY-rg3HUTBeOjD3Q/pub?output=csv');
+
+        function get_csv_content($spreadsheet_url){
+            if(!ini_set('default_socket_timeout', 15)) 
+            echo "<!-- unable to change socket timeout -->";
+
+            if (($handle = fopen($spreadsheet_url, "r")) !== FALSE) {
+                while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {
+                    $spreadsheet_data[] = $data;
+                }
+                fclose($handle);
+                return $spreadsheet_data;
+            }
+        }
+
+        function validate_data($data){
+            return true;
+        }
+
+    ?>
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -46,7 +47,7 @@ $data = get_csv_content('https://docs.google.com/spreadsheets/d/1GFG-phtItT3V3JG
             </div>
 
             <div class="row">
-                <div class="col-xs-7">
+                <div class="col-xs-12 col-lg-7">
                    <img src="map2.gif" usemap="#image-map" id="map" > 
 
                         <map name="image-map">
@@ -91,14 +92,16 @@ $data = get_csv_content('https://docs.google.com/spreadsheets/d/1GFG-phtItT3V3JG
                         </map>
                                             
 
-                </div>               
-                    <div class="col-xs-4" id="data">
-                        <center> <h3>   NRC details : </h3> </center>
-                               
-                        <p id="para">
-                                <br><br><br><br><br> &emsp; &emsp; Select a District on the MAP <br><br><br><br><br><br><br>
-                        </p>
+                </div>  
+                
+                    <div class=" col-xs-offset-1 col-xs-10 col-lg-offset-0 col-lg-push-1 col-lg-4" >
+                        <div id="data" style="border: 1px solid; margin-top:5px;">
+                            <center> <h3>   NRC details : </h3> </center>
 
+                            <p id="para" style="padding-left:5px;">
+                                    <br><br><br><br><br> &emsp; &emsp; Select a District on the MAP <br><br><br><br><br><br><br>
+                            </p>
+                        </div>
                     </div>           	
             </div>
         </div>
